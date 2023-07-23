@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C404DB56
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMConsole", "Tests\MVVMConsole\MVVMConsole.csproj", "{69EDFB3B-D247-4E66-A11A-FBBA936BD3CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFExperiment", "WPFExperiment\WPFExperiment.csproj", "{B787EC99-17EA-4DAA-BAEF-47B0306B4B1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{69EDFB3B-D247-4E66-A11A-FBBA936BD3CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69EDFB3B-D247-4E66-A11A-FBBA936BD3CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69EDFB3B-D247-4E66-A11A-FBBA936BD3CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B787EC99-17EA-4DAA-BAEF-47B0306B4B1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B787EC99-17EA-4DAA-BAEF-47B0306B4B1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B787EC99-17EA-4DAA-BAEF-47B0306B4B1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B787EC99-17EA-4DAA-BAEF-47B0306B4B1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{69EDFB3B-D247-4E66-A11A-FBBA936BD3CA} = {C404DB56-AAE3-40F3-9C40-29DAAF22D734}
+		{B787EC99-17EA-4DAA-BAEF-47B0306B4B1D} = {C404DB56-AAE3-40F3-9C40-29DAAF22D734}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {13D40992-F380-42E7-BD31-7B3D81DE7BED}
