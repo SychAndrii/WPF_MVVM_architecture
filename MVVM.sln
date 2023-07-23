@@ -5,6 +5,10 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM", "MVVM\MVVM.csproj", "{AC79149C-52BF-44C6-A3A3-AE5C59BE6183}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C404DB56-AAE3-40F3-9C40-29DAAF22D734}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMConsole", "Tests\MVVMConsole\MVVMConsole.csproj", "{69EDFB3B-D247-4E66-A11A-FBBA936BD3CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{AC79149C-52BF-44C6-A3A3-AE5C59BE6183}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC79149C-52BF-44C6-A3A3-AE5C59BE6183}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC79149C-52BF-44C6-A3A3-AE5C59BE6183}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69EDFB3B-D247-4E66-A11A-FBBA936BD3CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69EDFB3B-D247-4E66-A11A-FBBA936BD3CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69EDFB3B-D247-4E66-A11A-FBBA936BD3CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69EDFB3B-D247-4E66-A11A-FBBA936BD3CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{69EDFB3B-D247-4E66-A11A-FBBA936BD3CA} = {C404DB56-AAE3-40F3-9C40-29DAAF22D734}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {13D40992-F380-42E7-BD31-7B3D81DE7BED}
