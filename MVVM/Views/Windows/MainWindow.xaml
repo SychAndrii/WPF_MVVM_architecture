@@ -10,13 +10,39 @@
     <Window.DataContext>
         <viewmodels:MainWindowViewModel />
     </Window.DataContext>
-    <Grid>
-        <TextBox HorizontalAlignment="Left" 
-                 Margin="132,97,0,0" 
-                 TextWrapping="Wrap" 
-                 Text="{Binding WindowTitle, UpdateSourceTrigger=PropertyChanged}" 
-                 VerticalAlignment="Top" 
-                 Width="207"/>
-
-    </Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Exit"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About the app"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock>kekw</TextBlock>
+            </StatusBarItem>
+            <StatusBarItem MaxWidth="150" MinWidth="350">
+                <ProgressBar Width="120" 
+                             Height="15"
+                             Value="130"></ProgressBar>
+            </StatusBarItem>
+        </StatusBar>
+        <TabControl>
+            <TabItem Header="Tab 1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="117*"></ColumnDefinition>
+                        <ColumnDefinition Width="280*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="47*"></RowDefinition>
+                        <RowDefinition Height="147*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tab 2"></TabItem>
+        </TabControl>
+    </DockPanel>
 </Window>
