@@ -7,18 +7,16 @@ using System.Windows.Input;
 
 namespace MVVM.Infrastructure.Commands.Base
 {
-    class Command : ICommand
+    abstract class Command : ICommand
     {
-        public event EventHandler? CanExecuteChanged;
-
-        public bool CanExecute(object? parameter)
+        public event EventHandler? CanExecuteChanged
         {
-            throw new NotImplementedException();
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
         }
 
-        public void Execute(object? parameter)
-        {
-            throw new NotImplementedException();
-        }
+        abstract public bool CanExecute(object? parameter);
+
+        abstract public void Execute(object? parameter);
     }
 }
