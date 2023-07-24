@@ -4,21 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVM"
+        xmlns:viewmodels="clr-namespace:MVVM.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Window.Resources>
-        <DataTemplate x:Key="CommandsTemplate">
-            <ItemsControl ItemsSource="{Binding Path=Commands}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Margin="2,6"> 
-                    <Hyperlink Command="{Binding Path=Command}"> 
-                    <TextBlock Text="{Binding Path=DisplayName}" /> 
-                    </Hyperlink> 
-                    </TextBlock>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </DataTemplate>
-    </Window.Resources>
+        Title="{Binding Path=WindowTitle}" Height="450" Width="800">
+    <Window.DataContext>
+        <viewmodels:MainWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <TextBox HorizontalAlignment="Left" 
+                 Margin="132,97,0,0" 
+                 TextWrapping="Wrap" 
+                 Text="{Binding WindowTitle, UpdateSourceTrigger=PropertyChanged}" 
+                 VerticalAlignment="Top" 
+                 Width="207"/>
+
+    </Grid>
 </Window>
