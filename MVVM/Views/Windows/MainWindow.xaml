@@ -4,16 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVM"
+        xmlns:cmd="clr-namespace:MVVM.Infrastructure.Commands"
         xmlns:viewmodels="clr-namespace:MVVM.ViewModels"
         mc:Ignorable="d"
         Title="{Binding Path=WindowTitle}" Height="450" Width="800">
+    <Window.Resources>
+        <cmd:CloseApplicationCommand x:Key="CloseApplicationCommand" />
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="Q" Command="{StaticResource CloseApplicationCommand}" Modifiers="Ctrl" />
+    </Window.InputBindings>
     <Window.DataContext>
         <viewmodels:MainWindowViewModel />
     </Window.DataContext>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="Exit" Command="{Binding CloseApplicationCommand}"></MenuItem>
+                <MenuItem Header="Exit" Command="{StaticResource CloseApplicationCommand}"></MenuItem>
             </MenuItem>
             <MenuItem Header="Help">
                 <MenuItem Header="About the app"></MenuItem>
