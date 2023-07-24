@@ -21,7 +21,7 @@
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem>
-                <TextBlock>kekw</TextBlock>
+                <TextBlock Text="{Binding AppStatus}"></TextBlock>
             </StatusBarItem>
             <StatusBarItem MaxWidth="150" MinWidth="350">
                 <ProgressBar Width="120" 

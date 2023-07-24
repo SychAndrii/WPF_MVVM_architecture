@@ -24,5 +24,23 @@ namespace MVVM.ViewModels
             }
         }
         #endregion
+
+        #region AppStatus
+        private string _appStatus = "Ready!";
+        /// <summary>
+        /// Status of your application at the bottom of the main window.
+        /// </summary>
+        public string AppStatus
+        {
+            get
+            {
+                return _appStatus;
+            }
+            set
+            {
+                Set(ref _appStatus, value, "AppStatus");
+            }
+        }
+        #endregion
     }
 }
