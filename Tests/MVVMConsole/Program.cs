@@ -8,8 +8,8 @@ namespace Testing
         private const string URL = @"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
         public static void Main(string[] args)
         {
-            var dates = GetDates();
-            Console.WriteLine(string.Join("\r\n", dates));
+            var russia = GetData().First(c => c.country.Equals("Russia", StringComparison.OrdinalIgnoreCase));
+            Console.WriteLine(string.Join("\r\n", GetDates().Zip(russia.counts, (date, count) => $"{date} - {count}")));
         }
 
         private static async Task<Stream> GetURLResponseStream()
@@ -29,7 +29,7 @@ namespace Testing
                 var line = lines_reader.ReadLine();
                 if (string.IsNullOrEmpty(line))
                     continue;
-                yield return line;
+                yield return line.Replace("Korea,", "Korea -");
             }
         }
 
@@ -40,6 +40,33 @@ namespace Testing
             .Skip(4)
             .Select(s =>  DateTime.Parse(s, CultureInfo.InvariantCulture))
             .ToArray();
+
+        private static IEnumerable<(string country, string province, int[] counts)> GetData()
+        {
+            var lines = GetLines()
+                .Skip(1)
+                .Select(s => s.Split(','));
+
+            foreach (var line in lines)
+            {
+                var province = line[0].Trim();
+                var countryName = line[1].Trim(' ', '"');
+                int[] counts = null;
+
+                try
+                {
+                    counts = line.Skip(4).Select(int.Parse).ToArray();
+                }
+                catch (Exception)
+                {
+
+                }
+
+                yield return (countryName, province, counts);
+            }
+
+        } 
+
     }
 }
 
