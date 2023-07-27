@@ -1,4 +1,5 @@
 ﻿using MVVM.Infrastructure.Commands;
+using MVVM.Models;
 using MVVM.ViewModels.Base;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,24 @@ namespace MVVM.ViewModels
     class MainWindowViewModel : ViewModel
     {
         #region Properties
+
+        #region DataPoints
+
+        private IEnumerable<DataPoint> _TestDataPoints;
+
+        public IEnumerable<DataPoint> TestDataPoints
+        {
+            get
+            {
+                return _TestDataPoints;
+            }
+            set
+            {
+                Set(ref _TestDataPoints, value);
+            }
+        }
+
+        #endregion
 
         #region WindowTitle
         private string _WindowTitle = "Default Title";
@@ -72,6 +91,16 @@ namespace MVVM.ViewModels
         public MainWindowViewModel()
         {
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommand, CanCloseApplicationCommand);
+
+            var dataPoints = new List<DataPoint>((int)(360 / 0.1));
+            for (double i = 0; i <= 360; i += .1)
+            {
+                const double TO_RAD = Math.PI / 180;
+                var y = Math.Sin(i * Math.PI);
+                dataPoints.Add(new DataPoint() { XValue = i, YValue = y });
+            }
+
+            TestDataPoints = dataPoints;
         }
 
         #endregion
