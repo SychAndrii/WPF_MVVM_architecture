@@ -96,7 +96,7 @@ namespace MVVM.ViewModels
             for (double i = 0; i <= 360; i += .1)
             {
                 const double TO_RAD = Math.PI / 180;
-                var y = Math.Sin(i * Math.PI);
+                var y = Math.Sin(i * TO_RAD);
                 dataPoints.Add(new DataPoint() { XValue = i, YValue = y });
             }
 

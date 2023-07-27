@@ -6,6 +6,7 @@
         xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:cmd="clr-namespace:MVVM.Infrastructure.Commands"
         xmlns:viewmodels="clr-namespace:MVVM.ViewModels"
+        xmlns:oxy="http://oxyplot.org/wpf/contrib"
         mc:Ignorable="d"
         Title="{Binding Path=WindowTitle}" Height="450" Width="800">
     <Window.Resources>
@@ -55,7 +56,18 @@
                     </Grid.RowDefinitions>
                 </Grid>
             </TabItem>
-            <TabItem Header="Tab 2"></TabItem>
+            <TabItem Header="Graph">
+                <oxy:Plot>
+                    <oxy:Plot.Axes>
+                        <oxy:LinearAxis Position="Left" />
+                        <oxy:LinearAxis Position="Bottom" />
+                    </oxy:Plot.Axes>
+                    <oxy:LineSeries ItemsSource="{Binding TestDataPoints}"
+                                    Color="Red"
+                                    DataFieldX="XValue"
+                                    DataFieldY="YValue" />
+                </oxy:Plot>
+            </TabItem>
         </TabControl>
     </DockPanel>
 </Window>
