@@ -1,7 +1,4 @@
 ﻿namespace MVVM.Models
 {
-    internal class ProvinceInfo : PlaceInfo
-    {
-
-    }
+    internal class ProvinceInfo : PlaceInfo { }
 }
