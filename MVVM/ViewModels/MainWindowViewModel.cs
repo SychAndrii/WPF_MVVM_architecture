@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace MVVM.ViewModels
@@ -17,6 +18,25 @@ namespace MVVM.ViewModels
     class MainWindowViewModel : ViewModel
     {
         #region Properties
+
+        #region SelectedObject
+        private Object _SelectedObject;
+        public Object SelectedObject
+        {
+            get
+            {
+                return _SelectedObject;
+            }
+            set
+            {
+                Set(ref _SelectedObject, value, nameof(SelectedObject));
+            }
+        }
+        #endregion
+
+        #region Objects
+        public Object[] Objects { get; set; }
+        #endregion
 
         #region SelectedGroup
 
@@ -148,6 +168,14 @@ namespace MVVM.ViewModels
                 });
 
             Groups = new ObservableCollection<Group>(groups);
+
+            var dataList = new List<Object>();
+            dataList.Add(42);
+            dataList.Add("String");
+            dataList.Add(Groups[0]);
+            dataList.Add(Groups[0].Students.ElementAt(0));
+
+            Objects = dataList.ToArray();
         }
 
         #endregion

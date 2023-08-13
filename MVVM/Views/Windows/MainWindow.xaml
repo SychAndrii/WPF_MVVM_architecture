@@ -8,6 +8,7 @@
         xmlns:cmd="clr-namespace:MVVM.Infrastructure.Commands"
         xmlns:viewmodels="clr-namespace:MVVM.ViewModels"
         xmlns:oxy="http://oxyplot.org/wpf/contrib"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
         Title="{Binding Path=WindowTitle}" Height="450" Width="800">
     <Window.Resources>
@@ -38,7 +39,71 @@
                              Value="130"></ProgressBar>
             </StatusBarItem>
         </StatusBar>
-        <TabControl>
+        <TabControl SelectedIndex="0">
+            <TabItem Header="Data of different types">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250">
+                        </ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ListBox ItemsSource="{Binding Objects}" SelectedItem="{Binding SelectedObject}">
+                        <ListBox.Resources>
+                            <DataTemplate DataType="{x:Type decanat:Student}">
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type decanat:Group}">
+                                <TextBlock Text="{Binding Name, StringFormat='Group: {0}'}" />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type sys:String}">
+                                <TextBlock>
+                                    <Run Foreground="Red" FontWeight="Bold">Text</Run>:
+                                    <TextBlock Text="{Binding}" />
+                                </TextBlock>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type sys:Int32}">
+                                <TextBlock>
+                                    <Run Foreground="Red" FontWeight="Bold">Number</Run>:
+                                    <TextBlock Text="{Binding}" />
+                                </TextBlock>
+                            </DataTemplate>
+                        </ListBox.Resources>
+                    </ListBox>
+                    <GroupBox Header="Chosen Element" Grid.Column="1">
+                        <GroupBox.Resources>
+                            <DataTemplate DataType="{x:Type decanat:Student}">
+                                <TextBlock Text="{Binding Name}" 
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center" />
+                            </DataTemplate>
+                            
+                            <DataTemplate DataType="{x:Type decanat:Group}">
+                                <TextBlock Text="{Binding Name, StringFormat='Group: {0}'}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                            
+                            <DataTemplate DataType="{x:Type sys:String}">
+                                <TextBlock  
+                                    HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center">
+                                        <Run Foreground="Red" FontWeight="Bold">Text</Run>:
+                                        <TextBlock Text="{Binding}" />
+                                </TextBlock>
+                            </DataTemplate>
+                            
+                            <DataTemplate DataType="{x:Type sys:Int32}">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <Run FontWeight="Bold" Foreground="Red">Number: </Run>
+                                    <TextBlock Text="{Binding}" />
+                                </TextBlock>
+                            </DataTemplate>
+                        </GroupBox.Resources>
+                        
+                        <ContentControl Content="{Binding SelectedObject}" />
+                    </GroupBox>
+                </Grid>
+            </TabItem>
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -62,10 +127,9 @@
                         Header="{Binding SelectedGroup.Name, FallbackValue='Group not selected'}" 
                         Grid.Column="1">
                         <DataGrid ItemsSource="{Binding SelectedGroup.Students}"
-                                  AutoGenerateColumns="False"
                                   IsReadOnly="False"
+                                  AutoGenerateColumns="False"
                                   HorizontalGridLinesBrush="Transparent"
-                                  CanUserAddRows="False"
                                   VerticalGridLinesBrush="DarkGray"
                                   AlternatingRowBackground="LightGray">
                             <DataGrid.Columns>
@@ -84,9 +148,14 @@
                                 <DataGridTemplateColumn Header="Birthday">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <DatePicker SelectedDate="{Binding Birthday}"></DatePicker>
+                                            <TextBlock Text="{Binding Birthday}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <DatePicker SelectedDate="{Binding Birthday}"></DatePicker>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTextColumn Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=GroupBox}}" Header="Group">
                                     
