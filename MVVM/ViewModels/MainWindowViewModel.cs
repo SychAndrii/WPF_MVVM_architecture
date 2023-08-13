@@ -18,6 +18,23 @@ namespace MVVM.ViewModels
     {
         #region Properties
 
+        #region SelectedGroup
+
+        private Group _SelectedGroup;
+        public Group SelectedGroup
+        {
+            get
+            {
+                return _SelectedGroup;
+            }
+            set
+            {
+                Set(ref _SelectedGroup, value);
+            }
+        }
+
+        #endregion
+
         #region DataPoints
 
         private IEnumerable<DataPoint> _TestDataPoints;
@@ -117,7 +134,7 @@ namespace MVVM.ViewModels
                 {
                     Name = $"Name {studentIdx}",
                     Surname = $"Surname {studentIdx}",
-                    Patronymic = $"Patronymic {studentIdx}",
+                    Patronymic = $"Patronymic {studentIdx++}",
                     Birthday = DateTime.Now,
                     Rating = 4.0
                 });
@@ -126,7 +143,7 @@ namespace MVVM.ViewModels
                 .Range(1, 20)
                 .Select(i => new Group
                 {
-                    Name = $"Group {i}",
+                    Name = $"Group {i++}",
                     Students = new ObservableCollection<Student>(students)
                 });
 

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.com/icons/"
+        xmlns:decanat="clr-namespace:MVVM.Models.Decanat"
         xmlns:cmd="clr-namespace:MVVM.Infrastructure.Commands"
         xmlns:viewmodels="clr-namespace:MVVM.ViewModels"
         xmlns:oxy="http://oxyplot.org/wpf/contrib"
@@ -37,7 +38,7 @@
                              Value="130"></ProgressBar>
             </StatusBarItem>
         </StatusBar>
-        <TabControl SelectedIndex="{Binding SelectedIndex}">
+        <TabControl>
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -50,13 +51,50 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <GroupBox Header="Groups">
-                        <ListBox ItemsSource="{Binding Groups}" DisplayMemberPath="Name">
+                        <ListBox ItemsSource="{Binding Groups}" 
+                                 DisplayMemberPath="Name"
+                                 SelectedIndex="0"
+                                 SelectedItem="{Binding SelectedGroup}">
 
                         </ListBox>
                     </GroupBox>
-                    <GroupBox Header="Students" Grid.Column="1">
-                        <DataGrid>
-                            
+                    <GroupBox 
+                        Header="{Binding SelectedGroup.Name, FallbackValue='Group not selected'}" 
+                        Grid.Column="1">
+                        <DataGrid ItemsSource="{Binding SelectedGroup.Students}"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="False"
+                                  HorizontalGridLinesBrush="Transparent"
+                                  CanUserAddRows="False"
+                                  VerticalGridLinesBrush="DarkGray"
+                                  AlternatingRowBackground="LightGray">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}">
+                                    
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}">
+
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}">
+                                    
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Rating" Binding="{Binding Rating}">
+
+                                </DataGridTextColumn>
+                                <DataGridTemplateColumn Header="Birthday">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <DatePicker SelectedDate="{Binding Birthday}"></DatePicker>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=GroupBox}}" Header="Group">
+                                    
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Description" Width="*" Binding="{Binding Description}">
+
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
                 </Grid>
