@@ -41,19 +41,24 @@
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <fa:ImageAwesome Icon="Regular_File" Height="13    " Margin="0 0 5 0" />
-                        <TextBlock Text="Tab 1" VerticalAlignment="Center" />
+                        <TextBlock Text="Students" VerticalAlignment="Center" />
                     </StackPanel>
                 </TabItem.Header>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="117*"></ColumnDefinition>
-                        <ColumnDefinition Width="280*"></ColumnDefinition>
+                        <ColumnDefinition Width="250" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="47*"></RowDefinition>
-                        <RowDefinition Height="147*"></RowDefinition>
-                    </Grid.RowDefinitions>
+                    <GroupBox Header="Groups">
+                        <ListBox ItemsSource="{Binding Groups}" DisplayMemberPath="Name">
+
+                        </ListBox>
+                    </GroupBox>
+                    <GroupBox Header="Students" Grid.Column="1">
+                        <DataGrid>
+                            
+                        </DataGrid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Graph">

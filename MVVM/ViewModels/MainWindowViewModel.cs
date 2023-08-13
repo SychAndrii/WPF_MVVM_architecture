@@ -1,8 +1,11 @@
 ﻿using MVVM.Infrastructure.Commands;
 using MVVM.Models;
+using MVVM.Models.Decanat;
 using MVVM.ViewModels.Base;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +36,10 @@ namespace MVVM.ViewModels
 
         #endregion
 
+        #region Groups
+        public ObservableCollection<Group> Groups { get; set; }
+        #endregion
+        
         #region WindowTitle
         private string _WindowTitle = "Default Title";
 
@@ -101,6 +108,29 @@ namespace MVVM.ViewModels
             }
 
             TestDataPoints = dataPoints;
+
+            int studentIdx = 1;
+
+            var students = Enumerable
+                .Range(1, 10)
+                .Select(I => new Student
+                {
+                    Name = $"Name {studentIdx}",
+                    Surname = $"Surname {studentIdx}",
+                    Patronymic = $"Patronymic {studentIdx}",
+                    Birthday = DateTime.Now,
+                    Rating = 4.0
+                });
+
+            var groups = Enumerable
+                .Range(1, 20)
+                .Select(i => new Group
+                {
+                    Name = $"Group {i}",
+                    Students = new ObservableCollection<Student>(students)
+                });
+
+            Groups = new ObservableCollection<Group>(groups);
         }
 
         #endregion
