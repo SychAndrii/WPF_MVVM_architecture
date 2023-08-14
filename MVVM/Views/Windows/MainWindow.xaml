@@ -118,8 +118,13 @@
                     <GroupBox Header="Groups">
                         <DockPanel>
                             <UniformGrid Rows="1" DockPanel.Dock="Bottom">
-                                <Button Content="Add Group" Margin="0 0 3 0" Command="{Binding AddGroupCommand}"/>
-                                <Button Content="Delete Group" Command="{Binding RemoveGroupCommand}" CommandParameter="{Binding SelectedGroup}"/>
+                                <Button Content="Add Group" 
+                                        Style="{StaticResource PrimaryBtn}" 
+                                        Command="{Binding AddGroupCommand}"/>
+                                <Button Content="Delete Group" 
+                                        Style="{StaticResource DangerBtn}" 
+                                        Command="{Binding RemoveGroupCommand}" 
+                                        CommandParameter="{Binding SelectedGroup}"/>
                             </UniformGrid>
                             <ListBox ItemsSource="{Binding Groups}" 
                                  DisplayMemberPath="Name"
