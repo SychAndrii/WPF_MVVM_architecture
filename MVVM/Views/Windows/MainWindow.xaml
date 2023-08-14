@@ -39,7 +39,7 @@
                              Value="130"></ProgressBar>
             </StatusBarItem>
         </StatusBar>
-        <TabControl SelectedIndex="0">
+        <TabControl SelectedIndex="1">
             <TabItem Header="Data of different types">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -116,55 +116,60 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <GroupBox Header="Groups">
-                        <ListBox ItemsSource="{Binding Groups}" 
+                        <DockPanel>
+                            <UniformGrid Rows="1" DockPanel.Dock="Bottom">
+                                <Button Content="Add Group" Margin="0 0 3 0" Command="{Binding AddGroupCommand}"/>
+                                <Button Content="Delete Group" Command="{Binding RemoveGroupCommand}" CommandParameter="{Binding SelectedGroup}"/>
+                            </UniformGrid>
+                            <ListBox ItemsSource="{Binding Groups}" 
                                  DisplayMemberPath="Name"
-                                 SelectedIndex="0"
                                  SelectedItem="{Binding SelectedGroup}">
-
-                        </ListBox>
+                            </ListBox>
+                        </DockPanel>
+                        
                     </GroupBox>
                     <GroupBox 
                         Header="{Binding SelectedGroup.Name, FallbackValue='Group not selected'}" 
                         Grid.Column="1">
                         <DataGrid ItemsSource="{Binding SelectedGroup.Students}"
-                                  IsReadOnly="False"
-                                  AutoGenerateColumns="False"
-                                  HorizontalGridLinesBrush="Transparent"
-                                  VerticalGridLinesBrush="DarkGray"
-                                  AlternatingRowBackground="LightGray">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Name" Binding="{Binding Name}">
-                                    
-                                </DataGridTextColumn>
-                                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}">
+                              IsReadOnly="False"
+                              AutoGenerateColumns="False"
+                              HorizontalGridLinesBrush="Transparent"
+                              VerticalGridLinesBrush="DarkGray"
+                              AlternatingRowBackground="LightGray">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}">
 
-                                </DataGridTextColumn>
-                                <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}">
-                                    
-                                </DataGridTextColumn>
-                                <DataGridTextColumn Header="Rating" Binding="{Binding Rating}">
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Surname" Binding="{Binding Surname}">
 
-                                </DataGridTextColumn>
-                                <DataGridTemplateColumn Header="Birthday">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Birthday}" />
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                    <DataGridTemplateColumn.CellEditingTemplate>
-                                        <DataTemplate>
-                                            <DatePicker SelectedDate="{Binding Birthday}"></DatePicker>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellEditingTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTextColumn Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=GroupBox}}" Header="Group">
-                                    
-                                </DataGridTextColumn>
-                                <DataGridTextColumn Header="Description" Width="*" Binding="{Binding Description}">
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}">
 
-                                </DataGridTextColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Rating" Binding="{Binding Rating}">
+
+                                    </DataGridTextColumn>
+                                    <DataGridTemplateColumn Header="Birthday">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Birthday}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                        <DataGridTemplateColumn.CellEditingTemplate>
+                                            <DataTemplate>
+                                                <DatePicker SelectedDate="{Binding Birthday}"></DatePicker>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellEditingTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=GroupBox}}" Header="Group">
+
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Description" Width="*" Binding="{Binding Description}">
+
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
                     </GroupBox>
                 </Grid>
             </TabItem>

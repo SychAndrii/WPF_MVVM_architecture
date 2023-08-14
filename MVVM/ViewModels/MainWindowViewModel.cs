@@ -40,7 +40,7 @@ namespace MVVM.ViewModels
 
         #region SelectedGroup
 
-        private Group _SelectedGroup;
+        private Group _SelectedGroup = null;
         public Group SelectedGroup
         {
             get
@@ -115,17 +115,35 @@ namespace MVVM.ViewModels
 
         #region Comamnds
 
-        #region CloseApplicaitonCommand
+        #region AddGroupCommand
+        public ICommand AddGroupCommand { get; }
 
-        public ICommand CloseApplicationCommand { get; }
+        public bool CanExecuteAddGroupCommand(object obj) => true;
 
-        private void OnCloseApplicationCommand(object param)
+        public void ExecuteAddGroupCommand(object obj)
         {
-            Application.Current.Shutdown();
+            Group g = new Group()
+            {
+                Name = $"Group {Groups.Count + 1}",
+                Students = new ObservableCollection<Student>()
+            };
+            Groups.Add(g);
+        }
+        #endregion
+
+        #region RemoveGroupCommand
+        public ICommand RemoveGroupCommand { get; }
+
+        public bool CanExecuteRemoveGroupCommand(object obj)
+        {
+            return obj is Group g && Groups.Contains(g);
         }
 
-        private bool CanCloseApplicationCommand(object param) => true;
-
+        public void ExecuteRemoveGroupCommand(object obj)
+        {
+            if(obj is Group g)
+                Groups.Remove(g);
+        }
         #endregion
 
         #endregion
@@ -134,7 +152,8 @@ namespace MVVM.ViewModels
 
         public MainWindowViewModel()
         {
-            CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommand, CanCloseApplicationCommand);
+            AddGroupCommand = new LambdaCommand(ExecuteAddGroupCommand, CanExecuteAddGroupCommand);
+            RemoveGroupCommand = new LambdaCommand(ExecuteRemoveGroupCommand, CanExecuteRemoveGroupCommand);
 
             var dataPoints = new List<DataPoint>((int)(360 / 0.1));
             for (double i = 0; i <= 360; i += .1)
